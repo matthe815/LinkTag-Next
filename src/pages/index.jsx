@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { React, useEffect } from 'react'
@@ -11,6 +11,7 @@ import useInfo from '@/lib/swr-hooks/useInfo'
 import prisma from '@/lib/db'
 import LinkTagCarousel from '@/components/index/LinkTagCarousel'
 import safeJsonStringify from 'safe-json-stringify'
+import AstroContainer from '@/components/index/Astro/AstroContainer'
 
 export async function getStaticProps () {
   const userCount = await prisma.user.count()
@@ -53,39 +54,13 @@ function IndexPage ({ userCount, playCount, randomUsers }) {
 
   return (
     <Container>
+    <AstroContainer>
       <NextSeo />
       <Row>
         <Col className='text-center'>
           <h1>Welcome to LinkTag!</h1>
         </Col>
       </Row>
-
-      {
-        isLoading === false
-          ? (
-            <Row>
-              <Col className='d-flex gap-1 flex-column flex-sm-row align-items-center justify-content-center'>
-                {user?.username === undefined && (
-                  <>
-                    <form method='POST' action='/api/auth/login/discord'>
-                      <Button variant='success' size='lg' type='submit'>
-                        <FontAwesomeIcon className='me-2' icon={faDiscord} />
-                        Login with Discord
-                      </Button>
-                    </form>{' '}
-                  </>
-                )}
-                <a
-                  href='https://wii.guide/linktag'
-                  target='_blank'
-                  rel='noreferrer noopener'
-                >
-                </a>
-              </Col>
-            </Row>
-            )
-          : null
-      }
 
       {
         isLoading === false && user?.username === undefined && (
@@ -125,6 +100,33 @@ function IndexPage ({ userCount, playCount, randomUsers }) {
         )
       }
 
+      {
+        isLoading === false
+          ? (
+            <Row>
+              <Col className='d-flex gap-1 flex-column flex-sm-row align-items-center justify-content-center'>
+                {user?.username === undefined && (
+                  <>
+                    <form method='POST' action='/api/auth/login/discord'>
+                      <button type='submit'>
+                        <FontAwesomeIcon className='me-2' icon={faDiscord} />
+                        Get Started Today
+                      </button>
+                    </form>{' '}
+                  </>
+                )}
+                <a
+                  href='https://wii.guide/linktag'
+                  target='_blank'
+                  rel='noreferrer noopener'
+                >
+                </a>
+              </Col>
+            </Row>
+            )
+          : null
+      }
+
       <Row>
         <h3 className='mt-4 text-center'>
           Platforms Supported
@@ -151,6 +153,7 @@ function IndexPage ({ userCount, playCount, randomUsers }) {
           </Col>
         </Row>
       </Row>
+    </AstroContainer>
     </Container>
   )
 }

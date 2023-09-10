@@ -5,6 +5,18 @@ body {
   color: $light;
 }
 
+button {
+  padding: 10px;
+  color: #fff;
+  background: none;
+  border: 4px solid #3099ff;
+  border-radius: 8px;
+  font-family: Cafe;
+  font-size: 20px;
+  text-decoration: none;
+  transition: .2s;
+}
+
 #__next {
   display: flex;
   flex-direction: column;

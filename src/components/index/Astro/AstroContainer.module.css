@@ -1,0 +1,46 @@
+.AstroText {
+    width: 100%;
+    height: 100%;
+}
+
+.AstroHero {
+    top: 0;
+    left: 0;
+    background: url(https://www.wiilink24.com/Images/SpecialBG.png);
+    background-size: 100% 100%;
+    position: fixed;
+    width: 100%;
+}
+
+.AstroBG1 {
+    width: 220%;
+    height: 300px;
+    background: url(https://www.wiilink24.com/Images/bgtextspecialhero.png);
+    background-repeat: repeat-x;
+    background-size: 3600px;
+    opacity: .5;
+    animation: scroll 120s linear infinite;
+    overflow: hidden;
+}
+
+.AstroBG2 {
+    width: 220%;
+    height: 300px;
+    background: url(https://www.wiilink24.com/Images/bgtextspecialhero.png);
+    background-repeat: repeat-x;
+    background-size: 3600px;
+    opacity: .5;
+    animation: scrollback 120s linear infinite;
+    overflow: hidden;
+}
+
+.AstroParallax {
+    width: 1000px;
+    height: 280px;
+    display: grid;
+    left: 50%;
+    top: 22%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    z-index: 1;
+}

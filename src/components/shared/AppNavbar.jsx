@@ -4,12 +4,14 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 import Link from 'next/link'
 import UserMenu from './UserMenu'
 
+import styles from './AppNavbar.module.css'
+
 function AppNavbar () {
   const router = useRouter()
 
   return (
     <Navbar
-      className='mb-3'
+      className={styles.NavBar}
       collapseOnSelect
       expand='lg'
       bg='secondary'

@@ -12,6 +12,8 @@ import ENV from '@/lib/constants/environmentVariables'
 import PlayLog from '@/components/user/PlayLog'
 import PlayingStatus from '@/components/user/PlayingStatus'
 
+import styles from './index.module.css'
+
 export const getServerSideProps = withSession(async ({ req, query }) => {
   const { username } = query
   const loggedInUsername = req.session?.username
@@ -136,6 +138,7 @@ function ProfilePage ({ user, isLoggedIn, loggedInUser, event, playlog, session,
           }
         }}
       />
+      <div className={styles.userBody}>
       <Row>
         <Col lg={7}>
           <div className='mb-3'>
@@ -157,6 +160,7 @@ function ProfilePage ({ user, isLoggedIn, loggedInUser, event, playlog, session,
           {isLoggedIn && <ShowYourTagCard username={user.username} />}
         </Col>
       </Row>
+      </div>
     </Container>
   )
 }

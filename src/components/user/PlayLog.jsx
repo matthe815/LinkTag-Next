@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, Table } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import moment from 'moment/moment'
+
+import styles from './UserPanel.module.scss'
 
 function PlayLog ({ playlog, current }) {
   function getTimeStamp (time) {
@@ -10,9 +12,9 @@ function PlayLog ({ playlog, current }) {
   }
 
   return (
-    <Card className='mb-3' bg='secondary' text='white'>
-      <Card.Header as='h5'>Play Log</Card.Header>
-      <Card.Body>
+    <div className={styles.Panel}>
+      <div className={styles.PanelHeader}>Play Log</div>
+      <div className={styles.PanelBody}>
         <Table style={{ color: 'white' }}>
           <thead>
             <tr>
@@ -33,8 +35,8 @@ function PlayLog ({ playlog, current }) {
             ))}
           </tbody>
         </Table>
-      </Card.Body>
-    </Card>
+      </div>
+    </div>
   )
 }
 

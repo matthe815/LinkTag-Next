@@ -36,7 +36,16 @@ export const getServerSideProps = withSession(async ({ req, query }) => {
       font: true,
       cover_region: true,
       cover_type: true,
-      role: true
+      role: true,
+      isBanned: true,
+      isPublic: true,
+      publicOverride: true
+    }
+  })
+
+  const banReason = await prisma.banned_user.findFirst({
+    where: {
+      user_id: user.id
     }
   })
 
@@ -106,6 +115,7 @@ export const getServerSideProps = withSession(async ({ req, query }) => {
       user: JSON.parse(safeJsonStringify(user)),
       isLoggedIn: user.username === loggedInUsername,
       loggedInUser,
+      banReason: JSON.parse(safeJsonStringify(banReason)),
       event: JSON.parse(safeJsonStringify(event)),
       playlog: JSON.parse(safeJsonStringify(playlog)),
       session: JSON.parse(safeJsonStringify(session)),
@@ -114,7 +124,7 @@ export const getServerSideProps = withSession(async ({ req, query }) => {
   }
 })
 
-function ProfilePage ({ user, isLoggedIn, loggedInUser, event, playlog, session, game }) {
+function ProfilePage ({ user, isLoggedIn, banReason, loggedInUser, event, playlog, session, game }) {
   return (
     <Container>
       <NextSeo
@@ -140,7 +150,10 @@ function ProfilePage ({ user, isLoggedIn, loggedInUser, event, playlog, session,
       />
       <div className={styles.userBody}>
       <Row>
-        <Col lg={7}>
+        {user.isBanned === true ? <Alert variant='danger'>This account has been banned. Reason: {banReason.reason}</Alert> : ''}
+
+        {user.isBanned === false
+          ? <Col lg={7}>
           <div className='mb-3'>
             <LinkTag
               username={user.username}
@@ -151,12 +164,13 @@ function ProfilePage ({ user, isLoggedIn, loggedInUser, event, playlog, session,
 
           <PlayLog playlog={playlog} current={game} />
         </Col>
+          : ''}
 
-        <Col lg={5}>
+        <Col lg={user.isBanned ? 12 : 5}>
           { event && <Alert variant='info'>An event is currently ongoing: {event.name}.<br />Until {event.date}, you will recieve {event.bonus + 1}x more coins.</Alert> }
           { session && <PlayingStatus session={session} game={game} /> }
 
-          <UserInformationCard user={user} isLoggedIn={isLoggedIn} isAdmin={loggedInUser.role === 'admin'} />
+          <UserInformationCard user={user} isLoggedIn={isLoggedIn} isAdmin={loggedInUser.role === 'admin'} isMod={loggedInUser.role === 'admin' || loggedInUser.role === 'mod'} />
           {isLoggedIn && <ShowYourTagCard username={user.username} />}
         </Col>
       </Row>
@@ -170,6 +184,7 @@ ProfilePage.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   loggedInUser: PropTypes.object.isRequired,
   event: PropTypes.object.isRequired,
+  banReason: PropTypes.object.isRequired,
   playlog: PropTypes.array.isRequired,
   session: PropTypes.object.isRequired,
   game: PropTypes.object.isRequired

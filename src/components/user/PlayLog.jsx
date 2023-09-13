@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'react-bootstrap'
+import { Card, Table } from 'react-bootstrap'
 import moment from 'moment/moment'
 import LanguageContext from '../shared/LanguageContext'
 import LocalizedString from '../shared/LocalizedString'
-
-import styles from './UserPanel.module.scss'
 
 function PlayLog ({ playlog, current }) {
   function getTimeStamp (time) {

@@ -6,12 +6,12 @@ import UserMenu from './UserMenu'
 import LanguageContext from './LanguageContext'
 import LocalizedString from './LocalizedString'
 
+import styles from './AppNavbar.module.css'
+
 const flags = {
   en: '/img/flag/us.png',
   jp: '/img/flag/jp.png'
 }
-
-import styles from './AppNavbar.module.css'
 
 function AppNavbar () {
   const router = useRouter()

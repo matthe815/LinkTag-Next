@@ -15,8 +15,6 @@ import LanguageContext from '@/components/shared/LanguageContext'
 import LocalizedString from '@/components/shared/LocalizedString'
 import AppNavbar from '@/components/shared/AppNavbar'
 
-import styles from './index.module.css'
-
 export const getServerSideProps = withSession(async ({ req, query }) => {
   const { username } = query
   const loggedInUsername = req.session?.username

@@ -93,7 +93,7 @@ function CreditsPage ({ display_name: wiitagName }) {
               Figured out how to decrypt Mii QR codes
             </Contributor>
             <Contributor name='Larsenv'>
-              Prior developer of LinkTag
+              Prior developer of the original RiiTag and ex-brand manager.
             </Contributor>
             <Contributor name='Lustar'>
               Creator and owner of GameTDB; the database of games that LinkTag

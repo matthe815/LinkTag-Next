@@ -43,7 +43,6 @@ function AppNavbar () {
                 className="d-inline-block align-text-top no-shadow"
                 height={46}
                 src="/logo.png"
-                width={128}
               />
               </Navbar.Brand>
             </Link>

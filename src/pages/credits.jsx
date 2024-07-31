@@ -97,7 +97,7 @@ function CreditsPage ({ display_name: wiitagName }) {
             </Contributor>
             <Contributor name='Lustar'>
               Creator and owner of GameTDB; the database of games that LinkTag
-              uses
+              uses, and came up with the original service name of RiiTag.
             </Contributor>
             <Contributor name='PF2M'>Mii support</Contributor>
             <Contributor name='ShadowPuppet'>
